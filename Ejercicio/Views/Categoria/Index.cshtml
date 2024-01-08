@@ -1,0 +1,14 @@
+﻿      @using Ejercicio.Models.Entidades
+      @model List<Categoria>
+@{
+    ViewData["title"] = "Información Categoria";
+    Layout = "Plantilla";
+
+}
+
+<h1>Lista Categoria</h1>
+@foreach (var Categoria in Model)
+{
+    <partial name="categoriaSimple" model="Categoria"/>
+}
+

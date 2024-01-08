@@ -1,0 +1,15 @@
+﻿@using Ejercicio.Models.Entidades
+@{
+    ViewData["title"] = "Información Autor";
+    Layout = "Plantilla";
+}
+<h1>Vista Normal</h1>
+
+<h1>Información Autor</h1>
+<h2>ID: @Model.idAutor</h2>
+<h2>Nombre: @Model.nomAutor</h2>
+<h2>Apellido: @Model.apAutor </h2>
+
+
+
+<partial name= "Autorsimple"> </partial>

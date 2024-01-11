@@ -8,6 +8,7 @@ namespace Ejercicio.Controllers
     {
         public IActionResult Index()
         {
+
             var listCategoria = new List<Categoria>()
             {
                 new Categoria

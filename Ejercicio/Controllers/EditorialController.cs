@@ -61,7 +61,6 @@ namespace Ejercicio.Controllers
             return View(editorial);
         }
 
-        [HttpPost]
         public async Task<IActionResult> Editar(int idEditorial, Editorial editorial)
         {
 

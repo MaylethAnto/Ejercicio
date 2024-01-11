@@ -11,5 +11,8 @@ namespace Ejercicio.Services
         Task<IEnumerable<SelectListItem>>
             GetListaCategorias();
 
+        Task<IEnumerable<SelectListItem>>
+         GetListaEditorial();
+
     }
 }

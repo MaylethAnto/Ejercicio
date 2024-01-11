@@ -50,8 +50,24 @@ namespace Ejercicio.Services
 
             return list;
 
+        }
+        public async Task<IEnumerable<SelectListItem>> GetListaEditorial()
+        {
+            List<SelectListItem> list = await _context.Editoriales.Select(x => new SelectListItem
+            {
+                Text = x.nombreEdi,
+                Value = $"{x.idEditorial}"
+            })
+            .OrderBy(x => x.Text)
+            .ToListAsync();
 
+            list.Insert(0, new SelectListItem
+            {
+                Text = "[Seleccione una Editorial...]",
+                Value = "0"
+            });
 
+            return list;
         }
     }
 }

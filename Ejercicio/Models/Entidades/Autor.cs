@@ -10,7 +10,7 @@ namespace Ejercicio.Models.Entidades
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idAutor { get; set; }
 
-        [Required(ErrorMessage = "El campo {nomAutor} es obligatorio")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string nomAutor { get; set; }
         public string apAutor { get; set; }
 

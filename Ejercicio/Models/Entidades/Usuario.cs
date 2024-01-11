@@ -11,7 +11,7 @@ namespace Ejercicio.Models.Entidades
         public int idUsuario { get; set; }
         public string nomUsuario { get; set; }
 
-        [Required(ErrorMessage = "El campo {nomUsuario} es obligatorio")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string cedula { get; set; }
 
         public string correo { get; set; }

@@ -11,7 +11,7 @@ namespace Ejercicio.Models.Entidades
 
         public int idEditorial { get; set; }
 
-        [Required(ErrorMessage = "El campo {nombreEdi} es obligatorio")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string nombreEdi { get; set; }
       
 

@@ -44,7 +44,7 @@ namespace Ejercicio.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
 
         public async Task<IActionResult> Editar(int ?id)
         {

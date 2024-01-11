@@ -9,7 +9,7 @@ namespace Ejercicio.Models.Entidades
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idRol { get; set; }
 
-        [Required(ErrorMessage = "El campo {nombreRol} es obligatorio")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string nombreRol { get; set; }
    
     }

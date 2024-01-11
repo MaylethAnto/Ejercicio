@@ -10,7 +10,7 @@ namespace Ejercicio.Models.Entidades
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idCategoria { get; set;}
 
-        [Required(ErrorMessage = "El campo {categoria} es obligatorio")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string categoria { get; set;}
         public string descripcion { get; set;}
 

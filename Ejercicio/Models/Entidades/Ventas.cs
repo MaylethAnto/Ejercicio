@@ -11,7 +11,7 @@ namespace proyectoclase.Models.entidades
 
 
         public int idVentas { get; set; }
-
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [Column(TypeName = "decimal (18,2)")]             //Sentencia para los campos que son decimales
         [DisplayFormat(DataFormatString = "{0:c2}")]
 

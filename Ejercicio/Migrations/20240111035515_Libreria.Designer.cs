@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ejercicio.Migrations
 {
     [DbContext(typeof(LibreriaContext))]
-    [Migration("20240103153612_Libreria")]
+    [Migration("20240111035515_Libreria")]
     partial class Libreria
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Ejercicio.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

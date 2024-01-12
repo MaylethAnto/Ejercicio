@@ -13,7 +13,7 @@ builder.Services.AddDbContext<LibreriaContext>(o =>
 });
 //inyectar dependencias
 builder.Services.AddScoped<IServicioLista, ServicioLista>();
-
+builder.Services.AddScoped<IServicioImagen, ServicioImagen>();
 builder.Services.AddScoped<IServicioUsuario, ServicioUsuario>();
 
 

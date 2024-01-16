@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ejercicio.Models.Entidades
@@ -9,17 +10,13 @@ namespace Ejercicio.Models.Entidades
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         
         public int idUsuario { get; set; }
-        public string nomUsuario { get; set; }
+        [RegularExpression("[A-Za-zÁÉÍÓÚáéíóú]+ [A-Za-zÁÉÍÓÚáéíóú]+", ErrorMessage = "Ingrese un nombre válido sin caracteres especiales o numeros.")]
+        public string nomUsuario { get; set; } = null!;
 
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        public string cedula { get; set; }
+        public string? URLFotoPerfil { get; set; }
 
         public string correo { get; set; }
 
-        public string telefono { get; set; }
-
         public string password { get; set; }
-
-        public Roles roles { get; set; }
     }
 }

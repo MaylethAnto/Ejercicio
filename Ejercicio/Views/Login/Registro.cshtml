@@ -1,0 +1,87 @@
+﻿@model Ejercicio.Models.Entidades.Usuario
+@{
+    ViewData["Title"] = "Registro";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        /* Estilo adicional para resaltar campos con errores de validación */
+        .field-validation-error {
+            color: red;
+        }
+
+        /* Estilo para el fondo con colores pasteles y degradado */
+        body {
+            background: linear-gradient(135deg, #FFD8CB, #AED9E0);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #FFD8CB; /* Fondo con el mismo color que el inicio del degradado */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-4 col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Registrate
+                    </div>
+                    <div class="card-body">
+                        <form asp-controller="Login" asp-action="Registro" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre Completo</label>
+                                <input class="form-control" type="text" asp-for="nomUsuario" pattern="[A-Za-zÁÉÍÓÚáéíóú]+" required />
+                                <span asp-validation-for="nomUsuario" class="field-validation-error"></span>
+                                <div class="text-danger">Ingresa solo letras, no números ni caracteres especiales.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Correo</label>
+                                <input class="form-control" type="email" asp-for="correo" required />
+                                <span asp-validation-for="correo" class="field-validation-error"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contraseña</label>
+                                <input class="form-control" type="password" asp-for="password" required />
+                                <span asp-validation-for="password" class="field-validation-error"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Imagen (PNG)</label>
+                                <input type="file" class="form-control" name="Imagen" accept=".png" required />
+                                <span asp-validation-for="URLFotoPerfil" class="field-validation-error"></span>
+                            </div>
+                            <div class="d-grid gap-2 mb-3">
+                                <button class="btn btn-primary" type="submit">Registrate</button>
+                            </div>
+                            @if (ViewData["Mensaje"] != null)
+                            {
+                                <div class="form-group">
+                                    <div class="alert alert-danger" role="alert">
+                                        @ViewData["Mensaje"]
+                                    </div>
+                                </div>
+                            }
+                            ¿Ya tienes una cuenta? <a href="@Url.Action("IniciarSesion", "Login")"> Iniciar Sesion</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

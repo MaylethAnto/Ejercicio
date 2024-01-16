@@ -3,9 +3,8 @@ using System.Text;
 
 namespace Ejercicio.Services
 {
-    public class ServicioUtilitario
+    public class Utilitarios
     {
-
         public static string EncriptarClave(string clave)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -13,16 +12,14 @@ namespace Ejercicio.Services
                 byte[] bytesClave = Encoding.UTF8.GetBytes(clave);
                 byte[] hashBytes = sha256.ComputeHash(bytesClave);
 
-                StringBuilder sb=new StringBuilder();
+                StringBuilder sb = new StringBuilder();
                 foreach (byte b in hashBytes)
                 {
-                    sb.Append(b.ToString("x2"));
-
+                    sb.Append(b.ToString("x2")); // Formato hexadecimal
                 }
+
                 return sb.ToString();
             }
-
         }
-
     }
 }

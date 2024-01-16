@@ -1,6 +1,10 @@
 ﻿using Ejercicio.Models;
+using Ejercicio.Models.Entidades;
 using Ejercicio.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Ejercicio.Controllers
 {
@@ -10,16 +14,75 @@ namespace Ejercicio.Controllers
         private readonly IServicioImagen _servicioImagen;
         private readonly LibreriaContext _context;
 
-        public LoginController(IServicioUsuario servicioUsuario, IServicioImagen servicioImagen, LibreriaContext context)
+        public LoginController(IServicioUsuario servicioUsuario,
+            IServicioImagen servicioImagen, LibreriaContext context)
         {
             _servicioUsuario = servicioUsuario;
             _servicioImagen = servicioImagen;
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Registro()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Registro(Usuario usuario, IFormFile Imagen)
+        {
+            Stream image = Imagen.OpenReadStream();
+            string urlImagen = await _servicioImagen.SubirImagen(image, Imagen.FileName);
+
+            usuario.password = Utilitarios.EncriptarClave(usuario.password);
+            usuario.URLFotoPerfil = urlImagen;
+
+            Usuario usuarioCreado = await _servicioUsuario.SaveUsuario(usuario);
+
+            if (usuarioCreado.idUsuario > 0)
+            {
+                return RedirectToAction("IniciarSesion", "Login");
+            }
+
+            ViewData["Mensaje"] = "No se pudo crear el usuario";
+            return View();
+        }
+
+        public IActionResult IniciarSesion()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> IniciarSesion(string correo, string password)
+        {
+            Usuario usuarioEncontrado = await _servicioUsuario.GetUsuario(correo, Utilitarios.EncriptarClave(password));
+
+            if (usuarioEncontrado == null)
+            {
+                ViewData["Mensaje"] = "Usuario no encontrado";
+                return View();
+            }
+
+            List<Claim> claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name, usuarioEncontrado.nomUsuario),
+                new Claim("FotoPerfil", usuarioEncontrado.URLFotoPerfil),
+            };
+
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            AuthenticationProperties properties = new AuthenticationProperties()
+            {
+                AllowRefresh = true,
+            };
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                properties
+                );
+
+            return RedirectToAction("Index", "Home");
+
         }
     }
 }

@@ -66,6 +66,22 @@ namespace Ejercicio.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    idUsuario = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nomUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    URLFotoPerfil = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.idUsuario);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Libros",
                 columns: table => new
                 {
@@ -101,30 +117,6 @@ namespace Ejercicio.Migrations
                         column: x => x.editorialidEditorial,
                         principalTable: "Editoriales",
                         principalColumn: "idEditorial",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Usuarios",
-                columns: table => new
-                {
-                    idUsuario = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    nomUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    cedula = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    rolesidRol = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuarios", x => x.idUsuario);
-                    table.ForeignKey(
-                        name: "FK_Usuarios_Roles_rolesidRol",
-                        column: x => x.rolesidRol,
-                        principalTable: "Roles",
-                        principalColumn: "idRol",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -205,11 +197,6 @@ namespace Ejercicio.Migrations
                 column: "editorialidEditorial");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_rolesidRol",
-                table: "Usuarios",
-                column: "rolesidRol");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Ventas_usuarioidUsuario",
                 table: "Ventas",
                 column: "usuarioidUsuario");
@@ -220,6 +207,9 @@ namespace Ejercicio.Migrations
         {
             migrationBuilder.DropTable(
                 name: "DetalleVentas");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Libros");
@@ -238,9 +228,6 @@ namespace Ejercicio.Migrations
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
-
-            migrationBuilder.DropTable(
-                name: "Roles");
         }
     }
 }

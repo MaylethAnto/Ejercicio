@@ -132,8 +132,7 @@ namespace Ejercicio.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUsuario"));
 
-                    b.Property<string>("cedula")
-                        .IsRequired()
+                    b.Property<string>("URLFotoPerfil")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("correo")
@@ -148,16 +147,7 @@ namespace Ejercicio.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("rolesidRol")
-                        .HasColumnType("int");
-
-                    b.Property<string>("telefono")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("idUsuario");
-
-                    b.HasIndex("rolesidRol");
 
                     b.ToTable("Usuarios");
                 });
@@ -260,17 +250,6 @@ namespace Ejercicio.Migrations
                     b.Navigation("libro");
 
                     b.Navigation("ventas");
-                });
-
-            modelBuilder.Entity("Ejercicio.Models.Entidades.Usuario", b =>
-                {
-                    b.HasOne("Ejercicio.Models.Entidades.Roles", "roles")
-                        .WithMany()
-                        .HasForeignKey("rolesidRol")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("roles");
                 });
 
             modelBuilder.Entity("proyectoclase.Models.entidades.Libro", b =>

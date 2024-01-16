@@ -14,10 +14,10 @@ namespace Ejercicio.Services
         }
 
 
-        public  async Task<Usuario> GetUsuario(string correo, string contraseña)
+        public  async Task<Usuario> GetUsuario(string correo, string password)
         {
 
-            Usuario usuario = await _context.Usuarios.Where(u => u.correo == correo && u.password == contraseña).FirstOrDefaultAsync();
+            Usuario usuario = await _context.Usuarios.Where(u => u.correo == correo && u.password == password).FirstOrDefaultAsync();
 
             return usuario;
 

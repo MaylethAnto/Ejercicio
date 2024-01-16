@@ -10,7 +10,7 @@ namespace Ejercicio.Models.Entidades
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         
         public int idUsuario { get; set; }
-        [RegularExpression("[A-Za-zÁÉÍÓÚáéíóú]+ [A-Za-zÁÉÍÓÚáéíóú]+", ErrorMessage = "Ingrese un nombre válido sin caracteres especiales o numeros.")]
+       
         public string nomUsuario { get; set; } = null!;
 
         public string? URLFotoPerfil { get; set; }

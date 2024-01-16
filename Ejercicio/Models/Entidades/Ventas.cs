@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Ejercicio.Models.Entidades;
 
-namespace proyectoclase.Models.entidades
+namespace Ejercicio.Models.entidades
 {
     public class Ventas
     {

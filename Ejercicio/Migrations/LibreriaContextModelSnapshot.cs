@@ -152,7 +152,7 @@ namespace Ejercicio.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("proyectoclase.Models.entidades.Libro", b =>
+            modelBuilder.Entity("Ejercicio.Models.entidades.Libro", b =>
                 {
                     b.Property<int>("idlibro")
                         .ValueGeneratedOnAdd()
@@ -160,47 +160,41 @@ namespace Ejercicio.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idlibro"));
 
-                    b.Property<int>("autoridAutor")
+                    b.Property<int>("AutorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("año")
+                    b.Property<int>("Año")
                         .HasColumnType("int");
 
-                    b.Property<int>("categoriaidCategoria")
+                    b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("editorialidEditorial")
+                    b.Property<int>("EditorialidEditorial")
                         .HasColumnType("int");
 
-                    b.Property<bool>("estado")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("fecharegistro")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("precio")
+                    b.Property<decimal>("Precio")
                         .HasColumnType("decimal (18,2)");
 
-                    b.Property<string>("titulo")
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("urllibro")
+                    b.Property<string>("URLlibro")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("idlibro");
 
-                    b.HasIndex("autoridAutor");
+                    b.HasIndex("AutorId");
 
-                    b.HasIndex("categoriaidCategoria");
+                    b.HasIndex("CategoriaId");
 
-                    b.HasIndex("editorialidEditorial");
+                    b.HasIndex("EditorialidEditorial");
 
                     b.ToTable("Libros");
                 });
 
-            modelBuilder.Entity("proyectoclase.Models.entidades.Ventas", b =>
+            modelBuilder.Entity("Ejercicio.Models.entidades.Ventas", b =>
                 {
                     b.Property<int>("idVentas")
                         .ValueGeneratedOnAdd()
@@ -235,13 +229,13 @@ namespace Ejercicio.Migrations
 
             modelBuilder.Entity("Ejercicio.Models.Entidades.DetalleVenta", b =>
                 {
-                    b.HasOne("proyectoclase.Models.entidades.Libro", "libro")
+                    b.HasOne("Ejercicio.Models.entidades.Libro", "libro")
                         .WithMany()
                         .HasForeignKey("libroidlibro")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("proyectoclase.Models.entidades.Ventas", "ventas")
+                    b.HasOne("Ejercicio.Models.entidades.Ventas", "ventas")
                         .WithMany()
                         .HasForeignKey("ventasidVentas")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -252,34 +246,34 @@ namespace Ejercicio.Migrations
                     b.Navigation("ventas");
                 });
 
-            modelBuilder.Entity("proyectoclase.Models.entidades.Libro", b =>
+            modelBuilder.Entity("Ejercicio.Models.entidades.Libro", b =>
                 {
-                    b.HasOne("Ejercicio.Models.Entidades.Autor", "autor")
+                    b.HasOne("Ejercicio.Models.Entidades.Autor", "Autor")
                         .WithMany()
-                        .HasForeignKey("autoridAutor")
+                        .HasForeignKey("AutorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ejercicio.Models.Entidades.Categoria", "categoria")
+                    b.HasOne("Ejercicio.Models.Entidades.Categoria", "Categoria")
                         .WithMany()
-                        .HasForeignKey("categoriaidCategoria")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ejercicio.Models.Entidades.Editorial", "editorial")
+                    b.HasOne("Ejercicio.Models.Entidades.Editorial", "Editorial")
                         .WithMany()
-                        .HasForeignKey("editorialidEditorial")
+                        .HasForeignKey("EditorialidEditorial")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("autor");
+                    b.Navigation("Autor");
 
-                    b.Navigation("categoria");
+                    b.Navigation("Categoria");
 
-                    b.Navigation("editorial");
+                    b.Navigation("Editorial");
                 });
 
-            modelBuilder.Entity("proyectoclase.Models.entidades.Ventas", b =>
+            modelBuilder.Entity("Ejercicio.Models.entidades.Ventas", b =>
                 {
                     b.HasOne("Ejercicio.Models.Entidades.Usuario", "usuario")
                         .WithMany()

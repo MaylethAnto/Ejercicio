@@ -43,7 +43,7 @@
                         <form asp-controller="Login" asp-action="Registro" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label class="form-label">Nombre Completo</label>
-                                <input class="form-control" type="text" asp-for="nomUsuario" pattern="[A-Za-zÁÉÍÓÚáéíóú]+" required />
+                                <input class="form-control" type="text" asp-for="nomUsuario" pattern="[A-Za-zÁÉÍÓÚáéíóú ]+" required />
                                 <span asp-validation-for="nomUsuario" class="field-validation-error"></span>
                                 <div class="text-danger">Ingresa solo letras, no números ni caracteres especiales.</div>
                             </div>

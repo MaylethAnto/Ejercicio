@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using proyectoclase.Models.entidades;
+using Ejercicio.Models.entidades;
 
 namespace Ejercicio.Models.Entidades
 {

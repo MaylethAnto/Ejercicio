@@ -1,6 +1,6 @@
 ﻿using Ejercicio.Models.Entidades;
 using Microsoft.EntityFrameworkCore;
-using proyectoclase.Models.entidades;
+using Ejercicio.Models.entidades;
 
 namespace Ejercicio.Models
 {

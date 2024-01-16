@@ -87,34 +87,32 @@ namespace Ejercicio.Migrations
                 {
                     idlibro = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    año = table.Column<int>(type: "int", nullable: false),
-                    estado = table.Column<bool>(type: "bit", nullable: false),
-                    precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    fecharegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    urllibro = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    autoridAutor = table.Column<int>(type: "int", nullable: false),
-                    categoriaidCategoria = table.Column<int>(type: "int", nullable: false),
-                    editorialidEditorial = table.Column<int>(type: "int", nullable: false)
+                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Año = table.Column<int>(type: "int", nullable: false),
+                    EditorialidEditorial = table.Column<int>(type: "int", nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    URLlibro = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AutorId = table.Column<int>(type: "int", nullable: false),
+                    CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Libros", x => x.idlibro);
                     table.ForeignKey(
-                        name: "FK_Libros_Autores_autoridAutor",
-                        column: x => x.autoridAutor,
+                        name: "FK_Libros_Autores_AutorId",
+                        column: x => x.AutorId,
                         principalTable: "Autores",
                         principalColumn: "idAutor",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Libros_Categorias_categoriaidCategoria",
-                        column: x => x.categoriaidCategoria,
+                        name: "FK_Libros_Categorias_CategoriaId",
+                        column: x => x.CategoriaId,
                         principalTable: "Categorias",
                         principalColumn: "idCategoria",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Libros_Editoriales_editorialidEditorial",
-                        column: x => x.editorialidEditorial,
+                        name: "FK_Libros_Editoriales_EditorialidEditorial",
+                        column: x => x.EditorialidEditorial,
                         principalTable: "Editoriales",
                         principalColumn: "idEditorial",
                         onDelete: ReferentialAction.Cascade);
@@ -182,19 +180,19 @@ namespace Ejercicio.Migrations
                 column: "ventasidVentas");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Libros_autoridAutor",
+                name: "IX_Libros_AutorId",
                 table: "Libros",
-                column: "autoridAutor");
+                column: "AutorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Libros_categoriaidCategoria",
+                name: "IX_Libros_CategoriaId",
                 table: "Libros",
-                column: "categoriaidCategoria");
+                column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Libros_editorialidEditorial",
+                name: "IX_Libros_EditorialidEditorial",
                 table: "Libros",
-                column: "editorialidEditorial");
+                column: "EditorialidEditorial");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ventas_usuarioidUsuario",

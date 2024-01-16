@@ -1,9 +1,12 @@
 ﻿using Ejercicio.Models.Entidades;
+using Ejercicio.Services;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.VisualBasic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace proyectoclase.Models.entidades
+namespace Ejercicio.Models.entidades
 {
     public class Libro
     {
@@ -13,27 +16,34 @@ namespace proyectoclase.Models.entidades
         public int idlibro { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        public string titulo { get; set; }
+        public string Titulo { get; set; }
 
-        public int año { get; set; }
-
-        public bool estado { get; set; }
-
-        [Column(TypeName = "decimal (18,2)")]
-        [DisplayFormat(DataFormatString = "{0:c2}")]
-        public decimal precio { get; set; }
-
-
-        public DateTime fecharegistro { get; set; }
-
-        public string urllibro { get; set; }
-
+        public int Año { get; set; }
 
         //Claves foráneas
 
-        public Autor autor { get; set; }
-        public Categoria categoria { get; set; }
+        public Autor Autor { get; set; }
+        public Categoria Categoria { get; set; }
 
-        public Editorial editorial { get; set; }
+        public Editorial Editorial { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [Column(TypeName = "decimal (18,2)")]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
+        public decimal Precio { get; set; }
+
+        [Display(Name = "Imagen")]
+        public string URLlibro { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Debes de seleccionar un autor.")]
+        public int AutorId { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Debes de seleccionar una categoria.")]
+        public int CategoriaId { get; set; }
+
+
+        [NotMapped]
+        public IEnumerable<SelectListItem> Categorias { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem> Autores { get; set; }
     }
 }
